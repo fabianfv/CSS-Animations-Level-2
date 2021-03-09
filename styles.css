@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  background-color: royalblue;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ball {
+  width: 10vmin;
+
+  border-radius: 50%;
+  background-color: #fff;
+
+  --turns: 5turn;
+  --bottom: calc(100vh - 5vw / 2);
+  --right: calc(100vw - 5vw / 2);
+}
+
+.moveX {
+  animation-name: moveX;
+  animation-timing-function: linear;
+  animation-duration: 4s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.moveY {
+  animation-name: moveY;
+  animation-timing-function: ease-in;
+  animation-duration: 1.5s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.rotate {
+  animation-name: rotate;
+  animation-timing-function: linear;
+  animation-duration: 10s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+@keyframes moveX {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100vw - 5vmin * 2));
+  }
+}
+
+@keyframes moveY {
+  from {
+    transform: translateY(10vh);
+  }
+  to {
+    transform: translateY(calc(100vh - 5vmin * 2));
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(var(--turns));
+  }
+}
