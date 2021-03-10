@@ -1,60 +1,76 @@
 :root {
-  --ball-diameter: 10vmin;
+  --ball-diameter: 15vmin;
   --turns: 5turn;
-  --bottom: calc(100vh - var(--ball-diameter));
+  --bottom: calc(100vh - var(--ball-diameter) / 1.5);
   --right: calc(100vw - var(--ball-diameter));
 }
 
 body {
-  margin: 0;
   background-color: royalblue;
   height: 100%;
   overflow: hidden;
 }
 
 .ball {
-  width: 10vmin;
+  width: var(--ball-diameter);
   border-radius: 50%;
-  transform-origin: center;
 }
 
 .move {
-  transform-origin: center;
-  animation-name: moveX, moveY;
-  animation-timing-function: linear, ease-in;
-  animation-duration: 4s, 1.5s;
-  animation-direction: alternate;
+  position: absolute;
+  animation: moveX 4s linear, moveY 1.5s ease-in;
   animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
-.rotate {
-  transform-origin: center;
-  animation-name: rotate;
+.rotate-right {
+  animation-name: rotate-right;
   animation-timing-function: linear;
   animation-duration: 10s;
   animation-direction: normal;
   animation-iteration-count: infinite;
 }
 
+.rotate-left {
+  animation-name: rotate-left;
+  animation-timing-function: linear;
+  animation-duration: 10s;
+  animation-direction: reverse;
+  animation-iteration-count: infinite;
+}
+
 @keyframes moveX {
   from {
-    transform: translateX(0);
+    left: 0;
   }
   to {
-    transform: translateX(var(--right));
+    left: var(--right);
   }
 }
 
 @keyframes moveY {
   from {
-    transform: translateY(10vh);
+    top:10vh;
+  }
+  90% {
+    transform: scaleY(1);
   }
   to {
-    transform: translateY(var(--bottom));
+    top: var(--bottom);
+    transform: scaleY(0.5)
   }
 }
 
-@keyframes rotate {
+@keyframes rotate-right {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(var(--turns));
+  }
+}
+
+@keyframes rotate-left {
   from {
     transform: rotate(0);
   }
